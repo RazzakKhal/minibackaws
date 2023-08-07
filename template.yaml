@@ -1,0 +1,109 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  prog-back-train
+
+  Sample SAM Template for prog-back-train
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 120
+
+Resources:
+
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: lambdas/getuser
+      Handler: index.handler
+      Runtime: nodejs18.x
+      Architectures:
+      - x86_64
+      Events:
+        HelloWorld:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /hello
+            Method: post
+    Metadata: # Manage esbuild properties
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2020
+        Sourcemap: true
+        EntryPoints:
+        - index.ts
+
+  createUserFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: lambdas/createuser
+      Handler: index.handler
+      Runtime: nodejs18.x
+      Architectures:
+      - x86_64
+      Events:
+        HelloWorld:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /createUser
+            Method: post
+    # Metadata: # Manage esbuild properties
+    #   BuildMethod: esbuild
+    #   BuildProperties:
+    #     Minify: true
+    #     Target: ESNext
+    #     Sourcemap: true
+    #     EntryPoints:
+    #     - index.ts
+
+  getUserFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: lambdas/getuser
+      Handler: index.handler
+      Runtime: nodejs18.x
+      Architectures:
+      - x86_64
+      Events:
+        HelloWorld:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /getUser
+            Method: get
+    # Metadata: # Manage esbuild properties
+    #   BuildMethod: esbuild
+    #   BuildProperties:
+    #     Minify: true
+    #     Target: ESNext
+    #     Sourcemap: true
+    #     EntryPoints:
+    #     - index.ts
+
+
+  getUserFunctionDynamo:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: lambdas/lambdawithouttypedorm
+      Handler: index.handler
+      Runtime: nodejs18.x
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: myGlobalTable
+      Architectures:
+      - x86_64
+      Events:
+        HelloWorld:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /getUserr/{id}
+            Method: get
+    Metadata: # Manage esbuild properties
+      BuildMethod: esbuild
+      BuildProperties:
+        Target: ESNext
+        Sourcemap: true
+        EntryPoints:
+        - index.ts
+

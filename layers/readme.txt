@@ -1,0 +1,2 @@
+Hé ouiii pour pouvoir mettre des fichiers ici qui seront partagés par toutes les lambda il faut créer une couche lambda layers et ajouter cette couche à chaque lambda.
+Par flemme je vais donc copier les entités etc... dans chacune des lambda pour le moment.

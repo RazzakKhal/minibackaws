@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "@types/node": "^20.4.5"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.385.0",
+    "@aws-sdk/lib-dynamodb": "^3.385.0",
+    "@typedorm/common": "^1.15.4",
+    "@typedorm/core": "^1.15.4",
+    "@typedorm/document-client": "^1.15.4",
+    "aws-sdk": "^2.1428.0",
+    "esbuild": "^0.18.19",
+    "reflect-metadata": "^0.1.13",
+    "typescript": "^5.1.6"
+  }
+}

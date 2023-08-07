@@ -1,0 +1,12 @@
+{
+    "name": "get_user2",
+    "version": "1.0.0",
+    "dependencies": {
+        "@aws-sdk/client-dynamodb": "^3.382.0",
+        "@aws-sdk/lib-dynamodb": "^3.382.0",
+        "@types/node": "^20.4.6",
+        "aws-sdk": "^2.1428.0",
+        "esbuild": "^0.18.19",
+        "reflect-metadata": "^0.1.13"
+    }
+}
