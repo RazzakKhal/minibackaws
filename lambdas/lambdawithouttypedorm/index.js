@@ -54,16 +54,45 @@ var handler = function (event, context) { return __awaiter(void 0, void 0, void 
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, 4, 5]);
-                return [4 /*yield*/, dynamo.send(new lib_dynamodb_1.GetCommand({
+                // pour du get
+                // body = await dynamo.send(
+                //   new GetCommand({
+                //     TableName: tableName,
+                //     Key: {
+                //       PK: event.pathParameters.id,
+                //       SK : event.pathParameters.id
+                //     },
+                //   })
+                // );
+                // body = body.Item;
+                // pour du update ou du create
+                return [4 /*yield*/, dynamo.send(new lib_dynamodb_1.UpdateCommand({
                         TableName: tableName,
                         Key: {
                             PK: event.pathParameters.id,
                             SK: event.pathParameters.id
-                        }
+                        },
+                        UpdateExpression: "set email = :email",
+                        ExpressionAttributeValues: {
+                            ":email": "newmail@gmail.com"
+                        },
+                        ReturnValues: "ALL_NEW"
                     }))];
             case 2:
-                body = _a.sent();
-                body = body.Item;
+                // pour du get
+                // body = await dynamo.send(
+                //   new GetCommand({
+                //     TableName: tableName,
+                //     Key: {
+                //       PK: event.pathParameters.id,
+                //       SK : event.pathParameters.id
+                //     },
+                //   })
+                // );
+                // body = body.Item;
+                // pour du update ou du create
+                _a.sent();
+                body = "L'entit\u00E9 a \u00E9t\u00E9 correctement modifi\u00E9";
                 return [3 /*break*/, 5];
             case 3:
                 err_1 = _a.sent();
